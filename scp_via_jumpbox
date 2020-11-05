@@ -1,0 +1,2 @@
+#copies files on one pass via proxy server 
+scp -o 'ProxyJump user_name@10.10.1.10' em13400* oracle@192.168.0.12:/u01/depot
