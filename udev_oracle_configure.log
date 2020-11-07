@@ -1,0 +1,24 @@
+VBOX_HARDDISK_VBde0593a7-da803ce5udevadm info --name sdb
+udevadm info --name sdc
+
+udevadm info --name sdc | grep SERIAL
+E: ID_SERIAL=VBOX_HARDDISK_VBf3f3093e-e7832f41
+E: ID_SERIAL_SHORT=VBf3f3093e-e7832f41
+
+
+udevadm info --name sdb | grep SERIAL
+E: ID_SERIAL=VBOX_HARDDISK_VBde0593a7-da803ce5
+E: ID_SERIAL_SHORT=VBde0593a7-da803ce5
+
+
+# vi /etc/udev/rules.d/99-oraccle-asmdevices.rules
+KERNEL=="sd*", ENV{ID_SERIAL}=="VBOX_HARDDISK_VBde0593a7-da803ce5", SYMLINK+="oraasm/CRS", OWNER="oracle", GROUP="oinstall", MODE="0660"
+KERNEL=="sd*", ENV{ID_SERIAL}=="VBOX_HARDDISK_VBf3f3093e-e7832f41", SYMLINK+="oraasm/DATA", OWNER="oracle", GROUP="oinstall", MODE="0660"
+
+udevadm test /sys/block/sdb
+udevadm test /sys/block/sdc
+
+sudo udevadm trigger --name sdb
+sudo udevadm trigger --name sdc
+
+ls -lhrt /dev/oraasm/
