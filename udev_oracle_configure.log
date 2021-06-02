@@ -11,7 +11,7 @@ E: ID_SERIAL=VBOX_HARDDISK_VBde0593a7-da803ce5
 E: ID_SERIAL_SHORT=VBde0593a7-da803ce5
 
 
-# vi /etc/udev/rules.d/99-oraccle-asmdevices.rules
+# vi /etc/udev/rules.d/99-oracle-asmdevices.rules
 KERNEL=="sd*", ENV{ID_SERIAL}=="VBOX_HARDDISK_VBde0593a7-da803ce5", SYMLINK+="oraasm/CRS", OWNER="oracle", GROUP="oinstall", MODE="0660"
 KERNEL=="sd*", ENV{ID_SERIAL}=="VBOX_HARDDISK_VBf3f3093e-e7832f41", SYMLINK+="oraasm/DATA", OWNER="oracle", GROUP="oinstall", MODE="0660"
 
